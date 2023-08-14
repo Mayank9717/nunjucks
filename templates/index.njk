@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nunjucks Task</title>
+</head>
+<body>
+  <ul>
+    {% for user in users %}
+      <li>
+        {% if user.id % 2 === 0 %}
+          Name: {{ user.name }}<br>
+          Username: {{ user.username }}<br>
+          Email: {{ user.email }}<br>
+        {% else %}
+          I'm Odd
+        {% endif %}
+        {% set address = user.address %}
+        Address: {{ address.street }}, {{ address.suite }}, {{ address.city }}, {{ address.zipcode }}<br>
+        {% if user.email.endsWith('.biz') %}
+          Name with Email: {{ user.name }} ({{ user.email }})<br>
+        {% endif %}
+        {% if address.city in ['Aliyaview', 'Howemouth', 'Gwenborough'] %}
+          The Zipcode and Geo of cityname {{ address.city }} is: {{ address.zipcode }} and {{ address.geo.lat }} and {{ address.geo.lng }}<br>
+        {% endif %}
+        CatchPhrase: {{ user.company.catchPhrase.slice(0, 15) }}<br>
+      </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
